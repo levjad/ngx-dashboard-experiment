@@ -1,0 +1,38 @@
+.full-content {
+    padding: 16px 24px;
+}
+
+.boxed-content {
+    margin: 16px auto;
+    max-width: 1080px;
+}
+
+.page-header {
+    background-color: map-get($md-accent, 500);
+    background-attachment: fixed;
+    background-size: cover;
+    height: 32px;
+    color: white;
+    padding: 32px 24px;
+    z-index: 1;
+
+    .mat-form-element {
+        font-style: normal;
+    }
+
+    .mat-form-field-underline {
+        background-color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    .mat-form-field-label {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+
+    .mat-form-field-ripple {
+        background-color: rgba(255, 255, 255, 1) !important;;
+    }
+}
+
+.mat-title {
+    margin: 0 !important;
+}

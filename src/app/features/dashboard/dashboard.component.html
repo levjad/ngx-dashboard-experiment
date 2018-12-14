@@ -1,0 +1,44 @@
+<div class="page-header"
+     fxLayout="row"
+     fxLayoutAlign="start center">
+    <h3 class="mat-title"
+        fxFlex="50">
+        Dashboard
+    </h3>
+
+    <div class="search-bar"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxFlex="50">
+    </div>
+</div>
+
+
+<div class="grid-container">
+    <mat-grid-list cols="4" rowHeight="150px">
+      <mat-grid-tile *ngFor="let headline of headlines | async" [colspan]="headline.cols" [rowspan]="headline.rows">
+          <mat-card class="dashboard-card">
+            <mat-card-content class="dashboard-card-content">
+              <h1 [style.color]="headline.color">{{ headline.title }}</h1>
+              <p class="subtitle">{{ headline.subtitle }}</p>
+            </mat-card-content>
+          </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="4" rowHeight="350px">
+      <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              {{ card.title }}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>Card Content Here</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  
