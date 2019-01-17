@@ -1,13 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
+
+import { ApiService } from '../../shared/services/api.service';
+import { Todos } from '../../shared/models/todos';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'jad-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit, OnDestroy {
+  todos$: Observable<Todos[]>;
+
   /** Based on the screen size, switch from standard to one column per row */
   headlines = this.breakpointObserver.observe(Breakpoints.Handset).pipe (
     map(({ matches }) => {
@@ -49,6 +55,24 @@ export class DashboardComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.getTodos();
+  }
+
+  ngOnDestroy(): void {}
+
+  getTodos() {
+    this.todos$ = this.apiService.getTodos();
+    console.log(this.todos$);
+    // this.apiService.getTodos()
+    //   .pipe(takeUntil(this.unsubscribe))
+    //   .subscribe(todos => {
+    //       console.log(todos);
+    //   });
+  }
+
+
 
 }

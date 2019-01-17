@@ -9,6 +9,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from './shared/material.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { MaterialModule } from './shared/material.module';
     BrowserAnimationsModule,
     LayoutModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
