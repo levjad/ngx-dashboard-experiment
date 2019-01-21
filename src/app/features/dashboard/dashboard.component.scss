@@ -1,20 +1,30 @@
 .grid-container {
-    margin: 20px;
-  }
-  
-  .dashboard-card {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-  }
-  
-  .dashboard-card-content {
-    text-align: center;
-  }
+  margin: 20px;
+}
 
-  .subtitle {
-    color: rgba(0,0,0, .5);
-  }
-  
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+  overflow: auto;
+}
+
+.subtitle {
+  color: rgba(0,0,0, .5);
+}
+
+.tablecontainer {
+  overflow: auto;
+  max-height: 600px;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}

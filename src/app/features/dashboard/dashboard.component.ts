@@ -13,24 +13,25 @@ import { Observable, Subject } from 'rxjs';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   todos$: Observable<Todos[]>;
+  displayedColumns: string[] = ['id', 'title', 'status'];
 
   /** Based on the screen size, switch from standard to one column per row */
   headlines = this.breakpointObserver.observe(Breakpoints.Handset).pipe (
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Headline 1', subtitle: 'Subtitle', color: 'deeppink', cols: 4, rows: 1 },
-          { title: 'Headline 2', subtitle: 'Subtitle', color: 'deepskyblue', cols: 4, rows: 1 },
-          { title: 'Headline 3', subtitle: 'Subtitle', color: 'lawngreen', cols: 4, rows: 1 },
-          { title: 'Headline 4', subtitle: 'Subtitle', color: 'orangered', cols: 4, rows: 1 }
+          { id: 1, title: 'Headline 1', subtitle: 'Subtitle', color: 'deeppink', cols: 4, rows: 1 },
+          { id: 2, title: 'Headline 2', subtitle: 'Subtitle', color: 'deepskyblue', cols: 4, rows: 1 },
+          { id: 3, title: 'Headline 3', subtitle: 'Subtitle', color: 'lawngreen', cols: 4, rows: 1 },
+          { id: 4, title: 'Headline 4', subtitle: 'Subtitle', color: 'orangered', cols: 4, rows: 1 }
         ];
       }
 
       return [
-        { title: 'Headline 1', subtitle: 'Subtitle', color: 'deeppink', cols: 1, rows: 1 },
-        { title: 'Headline 2', subtitle: 'Subtitle', color: 'deepskyblue', cols: 1, rows: 1 },
-        { title: 'Headline 3', subtitle: 'Subtitle', color: 'lawngreen', cols: 1, rows: 1 },
-        { title: 'Headline 4', subtitle: 'Subtitle', color: 'orangered', cols: 1, rows: 1 }
+        { id: 1, title: 'Headline 1', subtitle: 'Subtitle', color: 'deeppink', cols: 1, rows: 1 },
+        { id: 2, title: 'Headline 2', subtitle: 'Subtitle', color: 'deepskyblue', cols: 1, rows: 1 },
+        { id: 3, title: 'Headline 3', subtitle: 'Subtitle', color: 'lawngreen', cols: 1, rows: 1 },
+        { id: 4, title: 'Headline 4', subtitle: 'Subtitle', color: 'orangered', cols: 1, rows: 1 }
       ];
     })
   );
@@ -39,18 +40,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
+          { id: 1, title: 'Card 1', cols: 4, rows: 1 },
+          { id: 2, title: 'Card 2', cols: 4, rows: 1 },
+          { id: 3, title: 'Todo List', cols: 4, rows: 2 },
+          { id: 4, title: 'Card 4', cols: 4, rows: 1 }
         ];
       }
 
       return [
-        { title: 'Card 1', cols: 4, rows: 1 },
-        { title: 'Card 2', cols: 2, rows: 1 },
-        { title: 'Card 3', cols: 2, rows: 2 },
-        { title: 'Card 4', cols: 2, rows: 1 }
+        { id: 1, title: 'Card 1', cols: 4, rows: 1 },
+        { id: 2, title: 'Card 2', cols: 2, rows: 1 },
+        { id: 3, title: 'Todo List', cols: 2, rows: 2 },
+        { id: 4, title: 'Card 4', cols: 2, rows: 1 }
       ];
     })
   );
@@ -65,12 +66,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   getTodos() {
     this.todos$ = this.apiService.getTodos();
-    console.log(this.todos$);
-    // this.apiService.getTodos()
-    //   .pipe(takeUntil(this.unsubscribe))
-    //   .subscribe(todos => {
-    //       console.log(todos);
-    //   });
   }
 
 
