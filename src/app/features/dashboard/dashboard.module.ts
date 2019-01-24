@@ -4,13 +4,16 @@ import { DashboardComponent } from './dashboard.component';
 import { MaterialModule } from '../../shared/material.module';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { ChartsComponent } from './charts/charts.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule
+    MaterialModule,
+    NgxChartsModule
   ],
-  declarations: [ DashboardComponent ]
+  declarations: [ DashboardComponent, ChartsComponent ]
 })
 export class DashboardModule { }

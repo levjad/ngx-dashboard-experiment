@@ -41,17 +41,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
       if (matches) {
         return [
           { id: 1, title: 'Card 1', cols: 4, rows: 1 },
-          { id: 2, title: 'Card 2', cols: 4, rows: 1 },
+          { id: 2, title: 'Pie Grid', cols: 4, rows: 1 },
           { id: 3, title: 'Todo List', cols: 4, rows: 2 },
-          { id: 4, title: 'Card 4', cols: 4, rows: 1 }
+          { id: 4, title: 'Bar Vertical', cols: 4, rows: 1 }
         ];
       }
 
       return [
         { id: 1, title: 'Card 1', cols: 4, rows: 1 },
-        { id: 2, title: 'Card 2', cols: 2, rows: 1 },
+        { id: 2, title: 'Pie Grid', cols: 2, rows: 1 },
         { id: 3, title: 'Todo List', cols: 2, rows: 2 },
-        { id: 4, title: 'Card 4', cols: 2, rows: 1 }
+        { id: 4, title: 'Bar Vertical', cols: 2, rows: 1 }
       ];
     })
   );

@@ -35,6 +35,8 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
+              <jad-charts *ngIf="card.id == 2" [view]="[700, 250]" [mode]="'pie-grid'"></jad-charts>
+              <jad-charts *ngIf="card.id == 4" [view]="[700, 250]" [mode]="'bar-vertical'"></jad-charts>
               <div class="tablecontainer" *ngIf="card.id == 3">
                   <table mat-table [dataSource]="todos$" class="mat-elevation-z0" fxFlexFill>
 
