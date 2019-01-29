@@ -15,8 +15,17 @@
   </ngx-charts-bar-vertical>
 </ng-container>
 
-
 <ng-container *ngIf="mode == 'pie-grid'">
   <ngx-charts-pie-grid [view]="view" [scheme]="colorScheme" [results]="single" (select)="onSelect($event)">
   </ngx-charts-pie-grid>
+</ng-container>
+
+<ng-container *ngIf="mode == 'advanced-pie'">
+  <ngx-charts-advanced-pie-chart
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="single"
+    [gradient]="gradient"
+    (select)="onSelect($event)">
+  </ngx-charts-advanced-pie-chart>
 </ng-container>
