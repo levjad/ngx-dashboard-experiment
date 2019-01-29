@@ -1,73 +1,86 @@
-<div class="page-header"
-     fxLayout="row"
-     fxLayoutAlign="start center">
-    <h3 class="mat-title"
-        fxFlex="50">
-        Dashboard
-    </h3>
+<div class="page-header" fxLayout="row" fxLayoutAlign="start center">
+  <h3 class="mat-title" fxFlex="50">
+    Dashboard
+  </h3>
 
-    <div class="search-bar"
-        fxLayout="row"
-        fxLayoutAlign="start center"
-        fxFlex="50">
-    </div>
+  <div class="search-bar" fxLayout="row" fxLayoutAlign="start center" fxFlex="50">
+  </div>
 </div>
 
 
 <div class="grid-container">
-    <mat-grid-list cols="4" rowHeight="150px">
-      <mat-grid-tile *ngFor="let headline of headlines | async" [colspan]="headline.cols" [rowspan]="headline.rows">
-          <mat-card class="dashboard-card">
-            <mat-card-content class="dashboard-card-content">
-              <h1 [style.color]="headline.color">{{ headline.title }}</h1>
-              <p class="subtitle">{{ headline.subtitle }}</p>
-            </mat-card-content>
-          </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+  <mat-grid-list cols="4" rowHeight="150px">
+    <mat-grid-tile *ngFor="let headline of headlines | async" [colspan]="headline.cols" [rowspan]="headline.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-content class="dashboard-card-content">
+          <ng-container *ngIf="headline.id == 1">
+            <h1 [style.color]="headline.color">{{ today | date:'HH:mm:ss' }}</h1>
+            <p class="subtitle">{{ headline.subtitle }}</p>
+          </ng-container>
+          <ng-container *ngIf="headline.id == 2">
+            <h1 [style.color]="headline.color">{{ today | date:'d. MMMM' }}</h1>
+            <p class="subtitle">{{ headline.subtitle }}</p>
+          </ng-container>
+          <ng-container *ngIf="headline.id == 3">
+            <h1 [style.color]="headline.color">{{ today | date:'w' }}</h1>
+            <p class="subtitle">{{ headline.subtitle }}</p>
+          </ng-container>
+          <ng-container *ngIf="headline.id == 4">
+            <h1 [style.color]="headline.color">{{ today | date:'yyyy' }}</h1>
+            <p class="subtitle">{{ headline.subtitle }}</p>
+          </ng-container>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 
-    <mat-grid-list cols="4" rowHeight="350px">
-      <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-        <mat-card class="dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              {{ card.title }}
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-              <jad-charts *ngIf="card.id == 2" [view]="[700, 250]" [mode]="'pie-grid'"></jad-charts>
-              <jad-charts *ngIf="card.id == 4" [view]="[700, 250]" [mode]="'bar-vertical'"></jad-charts>
-              <div class="tablecontainer" *ngIf="card.id == 3">
-                  <table mat-table [dataSource]="todos$" class="mat-elevation-z0" fxFlexFill>
+  <mat-grid-list cols="4" rowHeight="350px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{ card.title }}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div *ngIf="card.id == 1 && jokes$ | async as joke" fxFlexAlign="center" fxLayoutAlign="center">
+            <br>
+            <img src="{{ joke.icon_url }}">
+            <h1><em>{{ joke.value }}</em></h1>
+            <a mat-button href="{{ joke.url }}" target="_blank">Source</a>
+            <button mat-button (click)="getJokes()">
+              <mat-icon>replay</mat-icon>
+            </button>
+          </div>
+          <jad-charts *ngIf="card.id == 2" [view]="[700, 250]" [mode]="'pie-grid'"></jad-charts>
+          <jad-charts *ngIf="card.id == 4" [view]="[700, 250]" [mode]="'bar-vertical'"></jad-charts>
+          <div class="tablecontainer" *ngIf="card.id == 3">
+            <table mat-table [dataSource]="todos$" class="mat-elevation-z0" fxFlexFill>
 
-                      <!--- Note that these columns can be defined in any order.
-                            The actual rendered columns are set as a property on the row definition" -->
-                    
-                      <!-- Position Column -->
-                      <ng-container matColumnDef="id">
-                        <th mat-header-cell *matHeaderCellDef> ID </th>
-                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-                      </ng-container>
-                    
-                      <!-- Name Column -->
-                      <ng-container matColumnDef="title">
-                        <th mat-header-cell *matHeaderCellDef> Titel </th>
-                        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-                      </ng-container>
-                    
-                      <!-- Weight Column -->
-                      <ng-container matColumnDef="status">
-                        <th mat-header-cell *matHeaderCellDef> Status </th>
-                        <td mat-cell *matCellDef="let element"> {{element.completed}} </td>
-                      </ng-container>
-                    
-                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-              </div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </div>
-  
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef> Titel </th>
+                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element">
+                  <mat-icon [style.color]="element.completed ? 'green' : 'grey'">{{element.completed ?
+                    'check_circle_outline' : 'help_outline'}}</mat-icon>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
