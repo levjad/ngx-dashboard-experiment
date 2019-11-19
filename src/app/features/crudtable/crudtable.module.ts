@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CrudtableRoutingModule } from './crudtable-routing.module';
 import { CrudtableComponent } from './crudtable.component';
 
@@ -9,7 +9,8 @@ import { CrudtableComponent } from './crudtable.component';
   declarations: [CrudtableComponent],
   imports: [
     CommonModule,
-    CrudtableRoutingModule
+    CrudtableRoutingModule,
+    SharedModule
   ]
 })
 export class CrudtableModule { }
