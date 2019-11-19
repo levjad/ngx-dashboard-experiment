@@ -3,10 +3,10 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 // Themes (light-theme | dark-theme)
-@import 'app/shared/scss/themes/light.theme';
+@import 'app/scss/themes/light.theme';
 
 // Core styles
-@import 'app/shared/scss/core';
+@import 'app/scss/core';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
