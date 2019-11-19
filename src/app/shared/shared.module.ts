@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -27,7 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { NgModule } from '@angular/core';
+
 
 const MaterialModules = [
   MatAutocompleteModule,
@@ -62,9 +64,25 @@ const MaterialModules = [
   MatTooltipModule
 ];
 
+const SharedComponents = [];
+
+const SharedModules = [
+  MaterialModules,
+  CommonModule
+];
+
+const EntryComponents = [];
+
 @NgModule({
-  imports: [MaterialModules],
-  exports: [MaterialModules]
+  declarations: [ SharedComponents ],
+  imports: [ SharedModules ],
+  exports: [
+    SharedModules,
+    SharedComponents
+  ],
+  entryComponents: [
+    EntryComponents
+  ]
 })
 
-export class MaterialModule {}
+export class SharedModule {}

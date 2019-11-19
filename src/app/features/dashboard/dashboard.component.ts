@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
-
-import { ApiService } from '../../shared/services/api.service';
-import { Todos } from '../../shared/models/todos';
-import { Jokes } from '../../shared/models/jokes';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ApiService } from '../../core/services/api.service';
+import { Jokes } from '../../shared/models/jokes';
+import { Todos } from '../../shared/models/todos';
+
 
 @Component({
   selector: 'jad-dashboard',

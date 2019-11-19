@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Jokes } from '../../shared/models/jokes';
+import { Todos } from '../../shared/models/todos';
 
-import { Todos } from '../models/todos';
-import { Jokes } from '../models/jokes';
 
 @Injectable({
   providedIn: 'root'
