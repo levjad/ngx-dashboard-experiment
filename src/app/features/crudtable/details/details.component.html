@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Details</h1>
+<div mat-dialog-content>
+    <h4>Personal information</h4>
+    <mat-list>
+        <mat-list-item><sup>ID</sup>{{ detailsData.id }}</mat-list-item>
+        <mat-list-item><sup>Name</sup>{{ detailsData.name }}</mat-list-item>
+        <mat-list-item><sup>Username</sup>{{ detailsData.username }}</mat-list-item>
+        <mat-list-item><sup>Email</sup>{{ detailsData.email }}</mat-list-item>
+        <mat-list-item><sup>Phone</sup>{{ detailsData.phone }}</mat-list-item>
+    </mat-list>
+
+    <h4>Address</h4>
+    <mat-list>
+        <mat-list-item><sup>Street</sup>{{ detailsData.address.street }}</mat-list-item>
+        <mat-list-item><sup>Suite</sup>{{ detailsData.address.suite }}</mat-list-item>
+        <mat-list-item><sup>Zipcode</sup>{{ detailsData.address.zipcode }}</mat-list-item>
+        <mat-list-item><sup>City</sup>{{ detailsData.address.city }}</mat-list-item>
+    </mat-list>
+
+    <h4>Company</h4>
+    <mat-list>
+        <mat-list-item><sup>Name</sup>{{ detailsData.company.name }}</mat-list-item>
+        <mat-list-item>"{{ detailsData.company.catchPhrase }}"</mat-list-item>
+    </mat-list>
+</div>
+<div mat-dialog-actions>
+</div>

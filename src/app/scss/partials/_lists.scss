@@ -1,0 +1,27 @@
+mat-list {
+  sup {
+    position: absolute;
+    transform: translateY(-100%);
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  hr {
+    border: 2px solid whitesmoke;
+  }
+
+  mat-list-item:nth-child(even) {
+    background-color: whitesmoke;
+  }
+
+  .mat-list-error-message {
+    height: 96px !important;
+
+    sup {
+      transform: translateY(-240%);
+    }
+  }
+
+  mat-list-item:hover {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+  }
+}
