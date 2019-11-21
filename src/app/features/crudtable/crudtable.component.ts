@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/core/services/api.service';
 import { DetailsComponent } from './details/details.component';
+import { FormComponent } from './form/form.component';
 
 @Component({
   selector: 'jad-crudtable',
@@ -24,6 +25,13 @@ export class CrudtableComponent implements OnInit {
   openDetails(data: any): void {
     this.dialog.open(DetailsComponent, {
       width: '500px',
+      data: data
+    });
+  }
+
+  openFormDialog(data?: any) {
+    this.dialog.open(FormComponent, {
+      width: '50%',
       data: data
     });
   }

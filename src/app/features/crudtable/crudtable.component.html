@@ -12,6 +12,8 @@
   class="full-content"
   fxLayoutAlign="start">
 
+  <button mat-fab (click)="openFormDialog()"><mat-icon>add</mat-icon></button>
+
   <mat-card class="no-padding" fxFlex="100">
       <table mat-table #table [dataSource]="dataSource">
           <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
