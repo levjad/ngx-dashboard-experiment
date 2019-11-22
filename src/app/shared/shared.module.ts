@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -68,6 +69,7 @@ const SharedComponents = [];
 
 const SharedModules = [
   MaterialModules,
+  FlexLayoutModule,
   CommonModule
 ];
 

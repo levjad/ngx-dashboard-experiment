@@ -43,7 +43,7 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div *ngIf="card.id == 1 && jokes$ | async as joke" fxFlexAlign="center" fxLayoutAlign="center">
+          <div *ngIf="card.id == 1 && jokes$ | async as joke">
             <br>
             <img src="{{ joke.icon_url }}">
             <h1><em>{{ joke.value }}</em></h1>
