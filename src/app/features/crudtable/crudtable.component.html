@@ -24,6 +24,7 @@
                 </ng-container>
                 <ng-template #actions>
                     <button mat-icon-button (click)="openDetails(row)"><mat-icon>assignment</mat-icon></button>
+                    <button mat-icon-button (click)="openDeleteDialog(row.id)"><mat-icon>delete</mat-icon></button>
                     <!-- <button mat-icon-button><mat-icon>edit</mat-icon></button> -->
                 </ng-template>
               </td>
