@@ -11,6 +11,7 @@ import { FormComponent } from './form/form.component';
   styleUrls: ['./crudtable.component.scss']
 })
 export class CrudtableComponent implements OnInit {
+  data;
   dataSource = new MatTableDataSource<any>();
   displayedColumns = [ 'id', 'name', 'username', 'website', 'actions' ];
 
@@ -18,7 +19,8 @@ export class CrudtableComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.getUsers().subscribe( result => {
-      this.dataSource = new MatTableDataSource<any>(result);
+      this.data = result;
+      this.dataSource = new MatTableDataSource<any>(this.data);
     });
   }
 
@@ -30,9 +32,17 @@ export class CrudtableComponent implements OnInit {
   }
 
   openFormDialog(data?: any) {
-    this.dialog.open(FormComponent, {
-      width: '50%',
+    const dialogRef = this.dialog.open(FormComponent, {
+      width: '500px',
       data: data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        result.id = this.data.length + 1;
+        this.data.push(result);
+        this.dataSource = new MatTableDataSource<any>(this.data);
+      }
     });
   }
 

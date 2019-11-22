@@ -1,6 +1,84 @@
-<h1 mat-dialog-title>Form</h1>
+<h1 mat-dialog-title>{{ data ? 'Edit' : 'Create'}} Form</h1>
 <div mat-dialog-content>
 
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="10px">
+    
+      <h4>Personal Information</h4>
+
+      <mat-form-field>
+        <input formControlName="name" matInput placeholder="Name" value="" required/>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input formControlName="username" matInput placeholder="Username" value="" required/>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input formControlName="email" matInput placeholder="Email" value="" required/>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input formControlName="phone" matInput placeholder="Phone" value="" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input formControlName="website" matInput placeholder="Website" value="" />
+      </mat-form-field>
+
+      <h4>Address</h4>
+
+      <section formGroupName="address" fxLayout="column" fxLayoutGap="10px">
+
+        <mat-form-field>
+            <input formControlName="street" matInput placeholder="Street" value="" required/>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="suite" matInput placeholder="Suite" value="" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="zipcode" matInput placeholder="Zipcode" value="" required/>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="city" matInput placeholder="City" value="" required/>
+        </mat-form-field>
+
+        <section formGroupName="geo" fxLayout="row" fxLayoutGap="10px">
+
+            <mat-form-field>
+                <input formControlName="lat" matInput placeholder="Latitude" value="" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <input formControlName="lng" matInput placeholder="Longitude" value="" />
+            </mat-form-field>
+
+        </section>
+
+      </section>
+
+      <h4>Company</h4>
+
+      <section formGroupName="company" fxLayout="column" fxLayoutGap="10px">
+            <mat-form-field>
+                <input formControlName="name" matInput placeholder="Name" value="" required/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input formControlName="catchPhrase" matInput placeholder="Catch Phrase" value="" required/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input formControlName="bs" matInput placeholder="BS" value="" />
+            </mat-form-field>
+      </section>
+
+  </form>
+
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button color="accent" [mat-dialog-close]="form.value" [disabled]="!form.valid">Save</button>
 </div>

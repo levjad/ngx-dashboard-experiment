@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CrudtableRoutingModule } from './crudtable-routing.module';
 import { CrudtableComponent } from './crudtable.component';
@@ -12,7 +13,8 @@ import { FormComponent } from './form/form.component';
   imports: [
     CommonModule,
     CrudtableRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   entryComponents: [ DetailsComponent, FormComponent ]
 })
