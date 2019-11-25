@@ -12,7 +12,7 @@ import { FormComponent } from './form/form.component';
   styleUrls: ['./crudtable.component.scss']
 })
 export class CrudtableComponent implements OnInit {
-  data;
+  data: Array<any>;
   dataSource = new MatTableDataSource<any>();
   displayedColumns = [ 'id', 'name', 'username', 'website', 'actions' ];
 
@@ -39,9 +39,15 @@ export class CrudtableComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        result.id = this.data.length + 1;
-        this.data.push(result);
+      if ( result && result.mode === 'create') {
+        result.value.id = this.data.length + 1;
+        this.data.push(result.value);
+        this.dataSource = new MatTableDataSource<any>(this.data);
+      }
+
+      if ( result && result.mode === 'edit') {
+        const index = this.data.findIndex(e => e.id === result.value.id );
+        this.data[index] = result.value;
         this.dataSource = new MatTableDataSource<any>(this.data);
       }
     });
@@ -54,7 +60,6 @@ export class CrudtableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('### Delete ', id);
         for ( let i = 0; i < this.data.length; i++) {
           if (this.data[i].id === id) {
             this.data.splice(i, 1);

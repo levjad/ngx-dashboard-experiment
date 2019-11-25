@@ -6,23 +6,23 @@
       <h4>Personal Information</h4>
 
       <mat-form-field>
-        <input formControlName="name" matInput placeholder="Name" value="" required/>
+        <input formControlName="name" matInput placeholder="Name" required/>
       </mat-form-field>
 
       <mat-form-field>
-        <input formControlName="username" matInput placeholder="Username" value="" required/>
+        <input formControlName="username" matInput placeholder="Username" required/>
       </mat-form-field>
 
       <mat-form-field>
-        <input formControlName="email" matInput placeholder="Email" value="" required/>
+        <input formControlName="email" matInput placeholder="Email" required/>
       </mat-form-field>
 
       <mat-form-field>
-        <input formControlName="phone" matInput placeholder="Phone" value="" />
+        <input formControlName="phone" matInput placeholder="Phone" />
       </mat-form-field>
 
       <mat-form-field>
-        <input formControlName="website" matInput placeholder="Website" value="" />
+        <input formControlName="website" matInput placeholder="Website" />
       </mat-form-field>
 
       <h4>Address</h4>
@@ -30,29 +30,29 @@
       <section formGroupName="address" fxLayout="column" fxLayoutGap="10px">
 
         <mat-form-field>
-            <input formControlName="street" matInput placeholder="Street" value="" required/>
+            <input formControlName="street" matInput placeholder="Street" required/>
         </mat-form-field>
 
         <mat-form-field>
-            <input formControlName="suite" matInput placeholder="Suite" value="" />
+            <input formControlName="suite" matInput placeholder="Suite" />
         </mat-form-field>
 
         <mat-form-field>
-            <input formControlName="zipcode" matInput placeholder="Zipcode" value="" required/>
+            <input formControlName="zipcode" matInput placeholder="Zipcode" required/>
         </mat-form-field>
 
         <mat-form-field>
-            <input formControlName="city" matInput placeholder="City" value="" required/>
+            <input formControlName="city" matInput placeholder="City" required/>
         </mat-form-field>
 
         <section formGroupName="geo" fxLayout="row" fxLayoutGap="10px">
 
             <mat-form-field>
-                <input formControlName="lat" matInput placeholder="Latitude" value="" />
+                <input formControlName="lat" matInput placeholder="Latitude" />
             </mat-form-field>
 
             <mat-form-field>
-                <input formControlName="lng" matInput placeholder="Longitude" value="" />
+                <input formControlName="lng" matInput placeholder="Longitude" />
             </mat-form-field>
 
         </section>
@@ -63,15 +63,15 @@
 
       <section formGroupName="company" fxLayout="column" fxLayoutGap="10px">
             <mat-form-field>
-                <input formControlName="name" matInput placeholder="Name" value="" required/>
+                <input formControlName="name" matInput placeholder="Name" required/>
             </mat-form-field>
 
             <mat-form-field>
-                <input formControlName="catchPhrase" matInput placeholder="Catch Phrase" value="" required/>
+                <input formControlName="catchPhrase" matInput placeholder="Catch Phrase" required/>
             </mat-form-field>
 
             <mat-form-field>
-                <input formControlName="bs" matInput placeholder="BS" value="" />
+                <input formControlName="bs" matInput placeholder="BS" />
             </mat-form-field>
       </section>
 
@@ -80,5 +80,5 @@
 </div>
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
     <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button color="accent" [mat-dialog-close]="form.value" [disabled]="!form.valid">Save</button>
+    <button mat-button color="accent" [mat-dialog-close]="{ value: form.value, mode: mode}" [disabled]="!form.valid">Save</button>
 </div>
