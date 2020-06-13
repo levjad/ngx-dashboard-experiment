@@ -15,11 +15,13 @@ export class CrudtableComponent implements OnInit {
   data: Array<any>;
   dataSource = new MatTableDataSource<any>();
   displayedColumns = [ 'id', 'name', 'username', 'website', 'actions' ];
+  isLoading = true;
 
   constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.apiService.getUsers().subscribe( result => {
+      this.isLoading = false;
       this.data = result;
       this.dataSource = new MatTableDataSource<any>(this.data);
     });

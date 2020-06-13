@@ -28,10 +28,16 @@
                     <button mat-icon-button (click)="openFormDialog(row)"><mat-icon>edit</mat-icon></button>
                 </ng-template>
               </td>
+              <!-- <ng-template *ngIf="isLoading"> -->
+            <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+            <!-- </ng-template> -->
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
       </table>
+      <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   </mat-card>
+  
 </div>
 
