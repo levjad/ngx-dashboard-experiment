@@ -4,3 +4,24 @@
     </h3>
 </div>
 
+<div *ngIf="!loading; else spinner" class="grid-container">
+    <mat-grid-list *ngIf="pokemonList" cols="4" rowHeight="350px">
+        <mat-grid-tile *ngFor="let item of pokemonList" colspan="1" rowspan="1">
+            <mat-card class="dashboard-card">
+                <mat-card-header>
+                    <mat-card-title>#{{ item.id }} {{ item.name }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="dashboard-card-content">
+                    <img src="{{item.image}}">
+                    <mat-chip-list fxLayout="row" fxLayoutAlign="center">
+                        <mat-chip *ngFor="let type of item.types">{{ type }}</mat-chip>
+                    </mat-chip-list>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+<ng-template #spinner>
+    <mat-spinner style="margin: 50px auto;"></mat-spinner>
+</ng-template>

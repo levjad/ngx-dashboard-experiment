@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Jokes } from '../../shared/models/jokes';
 import { Todos } from '../../shared/models/todos';
 import { Users } from '../../shared/models/users';
-import { PokemonList } from '../../shared/models/pokedex';
+import { PokemonDetails, PokemonList } from '../../shared/models/pokedex';
 
 
 @Injectable({
@@ -30,5 +30,9 @@ export class ApiService {
 
   public getPokemonList() {
     return this.httpClient.get<PokemonList>(`${this.pokedexApiBaseUrl}/pokemon`);
+  }
+
+  public getPokemonDetails(url: string) {
+    return this.httpClient.get<PokemonDetails>(`${url}`);
   }
 }
