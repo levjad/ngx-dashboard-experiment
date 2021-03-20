@@ -15,7 +15,7 @@ import { Todos } from '../../shared/models/todos';
 
 export class DashboardComponent implements OnInit, OnDestroy {
   todos$: Observable<Todos[]>;
-  jokes$: Observable<Jokes[]>;
+  jokes$: Observable<Jokes>;
   displayedColumns: string[] = ['id', 'title', 'status'];
 
   today;

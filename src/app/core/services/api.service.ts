@@ -23,6 +23,6 @@ export class ApiService {
   }
 
   public getChuckNorrisJokes() {
-    return this.httpClient.get<Jokes[]>(this.chuckNorrisApiUrl);
+    return this.httpClient.get<Jokes>(this.chuckNorrisApiUrl);
   }
 }
