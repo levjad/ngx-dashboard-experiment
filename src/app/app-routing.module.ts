@@ -8,7 +8,8 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
         { path: '', loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule) },
-        { path: 'crud', loadChildren: () => import('./features/crudtable/crudtable.module').then(m => m.CrudtableModule) }
+        { path: 'crud', loadChildren: () => import('./features/crudtable/crudtable.module').then(m => m.CrudtableModule) },
+        { path: 'pokedex', loadChildren: () => import('./features/pokedex/pokedex.module').then(m => m.PokedexModule) }
     ]
 }
 ];
