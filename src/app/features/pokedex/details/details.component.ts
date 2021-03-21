@@ -35,4 +35,8 @@ export class DetailsComponent implements OnInit {
   convertHgToKg(weight: number) {
     return parseFloat((weight / 10).toString());
   }
+
+  capitalizeName(name: string) {
+    return name.replace(/^\w/, c => c.toUpperCase())
+  }
 }

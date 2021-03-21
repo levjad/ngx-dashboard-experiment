@@ -1,5 +1,5 @@
 <div *ngIf="selectedPokemon" fxLayout="column" fxLayoutGap="15px" style="margin-right:15px">
-    <h2>#{{ paddedId(selectedPokemon.id) }} {{ selectedPokemon.name }}</h2>
+    <h2>#{{ paddedId(selectedPokemon.id) }} {{ capitalizeName(selectedPokemon.name) }}</h2>
 
     <div fxLayout="row" fxLayoutGap="25px">
         <img class="pokemon-full" src="{{createUrl(selectedPokemon.id)}}">
@@ -12,6 +12,22 @@
                 <p matLine class="small-title">Weight</p>
                 <p matLine>{{ convertHgToKg(selectedPokemon.weight) }} kg</p>
             </mat-list-item>
+            <mat-list-item>
+                <p matLine class="small-title">Types</p>
+                <p matLine>
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let type of selectedPokemon.types">{{ type.type.name }}</mat-chip>
+                    </mat-chip-list>
+                </p>
+            </mat-list-item>
+            <mat-list-item>
+                <p matLine class="small-title">Abilities</p>
+                <p matLine>
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let ability of selectedPokemon.abilities">{{ ability.ability.name }}</mat-chip>
+                    </mat-chip-list>
+                </p>
+            </mat-list-item>
         </mat-list>
     </div>
 
@@ -21,6 +37,12 @@
             <span fxFlex="20">{{ stat.stat.name }}</span>
             <mat-progress-bar color="accent" max="255" value="{{ stat.base_stat }}"></mat-progress-bar>
         </div>
+    </div>
 
+    <div fxLayout="column">
+        <h3>Moves</h3>
+        <mat-chip-list>
+            <mat-chip *ngFor="let move of selectedPokemon.moves">{{ move.move.name }}</mat-chip>
+        </mat-chip-list>
     </div>
 </div>
