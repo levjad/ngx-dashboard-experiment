@@ -28,11 +28,16 @@ export class ApiService {
     return this.httpClient.get<Jokes>(this.chuckNorrisApiUrl);
   }
 
-  public getPokemonList() {
-    return this.httpClient.get<PokemonList>(`${this.pokedexApiBaseUrl}/pokemon`);
+  public getPokemonList(url?: string) {
+    if(url) {
+      return this.httpClient.get<PokemonList>(`${url}`);
+    } else {
+      return this.httpClient.get<PokemonList>(`${this.pokedexApiBaseUrl}/pokemon`);
+    }
   }
 
   public getPokemonDetails(url: string) {
     return this.httpClient.get<PokemonDetails>(`${url}`);
   }
+
 }

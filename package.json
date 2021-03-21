@@ -25,6 +25,7 @@
     "@angular/router": "11.2.6",
     "@swimlane/ngx-charts": "17.0.1",
     "core-js": "3.6.5",
+    "ngx-lazy-load-images": "^2.0.0",
     "rxjs": "6.6.6",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

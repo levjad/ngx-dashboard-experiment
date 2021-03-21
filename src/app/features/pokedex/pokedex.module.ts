@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PokedexComponent } from './pokedex.component';
 import { PokedexRoutingModule } from './pokedex-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { LazyLoadImagesModule } from 'ngx-lazy-load-images';
 
 
 
@@ -11,7 +12,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     PokedexRoutingModule,
-    SharedModule
+    SharedModule,
+    LazyLoadImagesModule
   ]
 })
 export class PokedexModule { }

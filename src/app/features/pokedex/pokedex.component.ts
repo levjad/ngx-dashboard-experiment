@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api.service';
-import { PokemonList, PokemonCard, PokemonDetails } from 'src/app/shared/models/pokedex';
+import { PokemonList, PokemonCard, PokemonDetails, PokemonListResult } from 'src/app/shared/models/pokedex';
 
 @Component({
   selector: 'jad-pokedex',
@@ -13,7 +13,10 @@ export class PokedexComponent implements OnInit {
   pokemonList: PokemonCard[] = [];
   pokemonDetailList: PokemonDetails[] = [];
 
-  loading = true;
+  nextBatch: string;
+
+  initLoading = true;
+  moreLoading = false;
 
   constructor(private apiService: ApiService) { }
 
@@ -23,28 +26,10 @@ export class PokedexComponent implements OnInit {
 
   getPokemonList() {
     this.apiService.getPokemonList().subscribe( response => {
-      const results = response.results;
-      results.forEach( item => {
-        const id = this.createId(item.url);
-        const types = [];
-        
-        this.apiService.getPokemonDetails(item.url).subscribe( response => {
-          this.pokemonDetailList.push(response);
+      this.nextBatch = response.next;
+      this.addMorePokemon(response.results);
 
-          response.types.forEach( type => {
-            types.push(type.type.name);
-          })
-        });
-
-        this.pokemonList.push({
-          id: id,
-          name: this.capitalizeName(item.name),
-          image: this.createImageUrl(id),
-          types: types
-        })
-      });
-
-      this.loading = false;
+      this.initLoading = false;
       console.log('###', this.pokemonDetailList);
     });
   }
@@ -60,6 +45,37 @@ export class PokedexComponent implements OnInit {
 
   createImageUrl(id: string) {
     return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png`
+  }
+
+  addMorePokemon(list: PokemonListResult[]) {
+    list.forEach( item => {
+      const id = this.createId(item.url);
+      const types = [];
+      
+      this.apiService.getPokemonDetails(item.url).subscribe( response => {
+        this.pokemonDetailList.push(response);
+
+        response.types.forEach( type => {
+          types.push(type.type.name);
+        })
+      });
+
+      this.pokemonList.push({
+        id: id,
+        name: this.capitalizeName(item.name),
+        image: this.createImageUrl(id),
+        types: types
+      })
+    });
+  }
+
+  loadMore() {
+    this.moreLoading = true;
+    this.apiService.getPokemonList(this.nextBatch).subscribe( response => {
+      this.nextBatch = response.next;
+      this.addMorePokemon(response.results)
+      this.moreLoading = false;
+    });
   }
 
 }

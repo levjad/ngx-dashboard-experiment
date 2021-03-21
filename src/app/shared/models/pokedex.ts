@@ -1,4 +1,4 @@
-export interface Result {
+export interface PokemonListResult {
     name: string;
     url: string;
 }
@@ -7,7 +7,7 @@ export interface PokemonList {
     count: number;
     next: string;
     previous?: any;
-    results: Result[];
+    results: PokemonListResult[];
 }
 
 export interface PokemonCard {
