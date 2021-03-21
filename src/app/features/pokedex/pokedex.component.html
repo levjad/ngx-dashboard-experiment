@@ -1,30 +1,36 @@
-<div class="page-header" fxLayout="row" fxLayoutAlign="start center">
-    <h3 class="mat-title" fxFlex="50">
-      Pokedex
-    </h3>
-</div>
+<mat-drawer-container>
+    <div class="page-header" fxLayout="row" fxLayoutAlign="start center">
+        <h3 class="mat-title" fxFlex="50">
+          Pokedex (Total: {{ totalCount }})
+        </h3>
+    </div>
+    
+    <div *ngIf="!initLoading; else spinner" class="grid-container">
+        <mat-grid-list *ngIf="pokemonList" cols="4" rowHeight="350px">
+            <mat-grid-tile *ngFor="let item of pokemonList" colspan="1" rowspan="1" lazy-load-images>
+                <mat-card class="dashboard-card">
+                    <mat-card-header>
+                        <mat-card-title>#{{ item.id }} {{ item.name }}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="dashboard-card-content">
+                        <a (click)="openDetailDrawer(detailsDrawer, item.id)"><img class="pokemon-image" [attr.data-src]="item.image"></a>
+                        <mat-chip-list fxLayout="row" fxLayoutAlign="center">
+                            <mat-chip *ngFor="let type of item.types">{{ type }}</mat-chip>
+                        </mat-chip-list>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    
+        <button *ngIf="!moreLoading, else spinner" style="margin: 25px 46%;" mat-raised-button (click)="loadMore()">Load more</button>
+    </div>
+    
+    
+    <ng-template #spinner>
+        <mat-spinner style="margin: 25px auto;"></mat-spinner>
+    </ng-template>
 
-<div *ngIf="!initLoading; else spinner" class="grid-container">
-    <mat-grid-list *ngIf="pokemonList" cols="4" rowHeight="350px">
-        <mat-grid-tile *ngFor="let item of pokemonList" colspan="1" rowspan="1" lazy-load-images>
-            <mat-card class="dashboard-card">
-                <mat-card-header>
-                    <mat-card-title>#{{ item.id }} {{ item.name }}</mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="dashboard-card-content">
-                    <img class="pokemon-image" [attr.data-src]="item.image">
-                    <mat-chip-list fxLayout="row" fxLayoutAlign="center">
-                        <mat-chip *ngFor="let type of item.types">{{ type }}</mat-chip>
-                    </mat-chip-list>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
-
-    <button *ngIf="!moreLoading, else spinner" style="margin: 25px 46%;" mat-raised-button (click)="loadMore()">Load more</button>
-</div>
-
-
-<ng-template #spinner>
-    <mat-spinner style="margin: 50px auto;"></mat-spinner>
-</ng-template>
+    <mat-drawer #detailsDrawer position="end">
+        <jad-pokedex-details [selectedPokemon]="selectedPokemon"></jad-pokedex-details>
+    </mat-drawer>
+</mat-drawer-container>

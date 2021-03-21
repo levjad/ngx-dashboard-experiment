@@ -19,3 +19,16 @@
     width: 215px;
     height: 215px;
 }
+
+a:hover {
+    cursor: pointer;
+}
+
+.mat-drawer {
+    max-width: 80%;
+    padding: 15px 0 15px 15px;
+}
+
+.mat-drawer-container {
+    height: calc(100vh - 64px)!important;
+}

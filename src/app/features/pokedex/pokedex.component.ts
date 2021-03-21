@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api.service';
 import { PokemonList, PokemonCard, PokemonDetails, PokemonListResult } from 'src/app/shared/models/pokedex';
@@ -12,11 +13,14 @@ export class PokedexComponent implements OnInit {
   pokemonList$: Observable<PokemonList>;
   pokemonList: PokemonCard[] = [];
   pokemonDetailList: PokemonDetails[] = [];
+  selectedPokemon: PokemonDetails;
+  totalCount: number;
 
   nextBatch: string;
 
   initLoading = true;
   moreLoading = false;
+
 
   constructor(private apiService: ApiService) { }
 
@@ -26,6 +30,7 @@ export class PokedexComponent implements OnInit {
 
   getPokemonList() {
     this.apiService.getPokemonList().subscribe( response => {
+      this.totalCount = response.count;
       this.nextBatch = response.next;
       this.addMorePokemon(response.results);
 
@@ -65,7 +70,7 @@ export class PokedexComponent implements OnInit {
         name: this.capitalizeName(item.name),
         image: this.createImageUrl(id),
         types: types
-      })
+      });
     });
   }
 
@@ -76,6 +81,11 @@ export class PokedexComponent implements OnInit {
       this.addMorePokemon(response.results)
       this.moreLoading = false;
     });
+  }
+
+  openDetailDrawer(drawer: MatDrawer, id: string) {
+    this.selectedPokemon = this.pokemonDetailList.find(pokemon => pokemon.id === parseInt(id));
+    drawer.toggle();
   }
 
 }

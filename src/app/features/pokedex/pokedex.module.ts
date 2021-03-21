@@ -4,11 +4,12 @@ import { PokedexComponent } from './pokedex.component';
 import { PokedexRoutingModule } from './pokedex-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LazyLoadImagesModule } from 'ngx-lazy-load-images';
+import { DetailsComponent } from './details/details.component';
 
 
 
 @NgModule({
-  declarations: [PokedexComponent],
+  declarations: [PokedexComponent, DetailsComponent],
   imports: [
     CommonModule,
     PokedexRoutingModule,
